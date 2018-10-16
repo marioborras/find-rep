@@ -1,0 +1,27 @@
+{
+  "name": "find-my-rep",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "4.16.4",
+    "requirejs": "^2.3.6"
+  },
+  "author": "Mario Borras",
+  "license": "ISC",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marioborras/find-my-rep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marioborras/find-my-rep/issues"
+  },
+  "homepage": "https://github.com/marioborras/find-my-rep#readme",
+  "description": "",
+  "devDependencies": {
+    "dotenv": "^6.1.0"
+  }
+}

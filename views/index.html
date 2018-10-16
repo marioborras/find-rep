@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Find My Rep</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="style`eet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+        <link rel="stylesheet" href="styles.css" >
+        <script>const apiKey = "<%= apiKey %>"</script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    </head>
+        
+    <body id="capitol">
+            <h1><span style="font-size: 50px"> Government Works For You</span></h1>
+        <div class="container">
+            <h2>Time until <a href="https://en.wikipedia.org/wiki/United_States_elections,_2018">Election Day </a>:</h2>
+            </br>
+            <h2 id="time"></h2>
+            <div class="container-fluid">
+                <h3>Here you can find your representatives and how to contact them.</br> Enter your full address below to get started.</h3>
+                <div class="form-group row">
+                    <input type="text" class=".col-xs-4" id="search" style="font-size:25px; width: 500px; height: 50px">
+                    </br>
+                    <button type="submit" id="submit" class="btn btn-primary" onclick="validateSubmit()" style="font-size:25px; width: 500px" >Submit!</button>
+                </div>
+            </div>
+        </div>
+
+        <script> 
+            function activatePlacesSearch(){
+                let input = document.getElementById('search');
+                let autocomplete = new google.maps.places.Autocomplete(input);
+                // Set  restriction on country for the autocomplete 
+                autocomplete.setComponentRestrictions(
+                {'country': 'us'});
+            }
+        </script>
+        
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>&libraries=places&callback=activatePlacesSearch"></script>
+        <script type='text/javascript' src='main.js'></script>
+
+        //disable the submit button until text is found
+        <script>
+            $('#submit').attr('disabled', true);
+            $('input:text').keyup(function () {
+            let disable = false;
+                $('input:text').each(function(){
+                    if($(this).val()==""){
+                            disable = true;                
+                    }
+                });
+            $('#submit').prop('disabled', disable);
+            });
+        </script>
+    </body>
+</html>
