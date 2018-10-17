@@ -13,14 +13,14 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     </head>
         
-    <body id="capitol">
+    <body id="capitol" onload="showPage()">
             <h1><span style="font-size: 50px"> Government Works For You</span></h1>
         <div class="container">
             <h2 id="clock">Time until <a href="https://en.wikipedia.org/wiki/United_States_elections,_2018">Election Day </a>:
             <span id="time"></span>
             </br></br>
             
-            <div class="container-fluid">
+            <div style="display:none;" class="container-fluid animate-bottom" id ="myDiv">
                 <h3>Here you can find your representatives and how to contact them.</br> Enter your full address below to get started.</h3>
                 <div class="form-group row">
                     <input type="text" class=".col-xs-4" id="search" style="font-size:25px; width: 500px; height: 50px">
@@ -68,6 +68,14 @@
                 });
             $('#submit').prop('disabled', disable);
             });
+        </script>
+        <script>
+            function showPage() {
+  document.getElementById("myDiv").style.display = "block";
+}
+
+</script>
+            
         </script>
     </body>
 </html>
