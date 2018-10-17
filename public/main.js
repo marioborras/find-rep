@@ -93,7 +93,7 @@ for (var i = 0; i <data.offices.length; i++){
         //attach it to the card
         const image = document.createElement('img');
         if (data.officials[politician].photoUrl ==undefined) {
-            image.src = 'default.jpeg'
+            image.src = '/images/default.jpeg'
         }else {
             image.src =`${data.officials[politician].photoUrl}` 
         }
