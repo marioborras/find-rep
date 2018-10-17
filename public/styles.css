@@ -171,10 +171,10 @@ button {
 
 @-webkit-keyframes animatebottom {
   from { bottom:-100px; opacity:0 } 
-  to { bottom:0px; opacity:1 }
+  to { bottom:0px; opacity:.9 }
 }
 
 @keyframes animatebottom { 
   from{ bottom:-100px; opacity:0 } 
-  to{ bottom:0; opacity:1 }
+  to{ bottom:0; opacity:.9 }
 }
