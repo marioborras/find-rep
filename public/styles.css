@@ -72,7 +72,8 @@ button {
   footer {
     background-color: black;
     color: white;
-    position:absolute;
+    position:fixed;
+    left: 0;
     bottom:0;
     width:100%;
 
