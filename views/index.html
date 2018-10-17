@@ -23,12 +23,22 @@
                 <h3>Here you can find your representatives and how to contact them.</br> Enter your full address below to get started.</h3>
                 <div class="form-group row">
                     <input type="text" class=".col-xs-4" id="search" style="font-size:25px; width: 500px; height: 50px">
-                    </br>
                     <button type="submit" id="submit" class="btn btn-primary" onclick="validateSubmit()" style="font-size:25px; width: 500px" >Submit!</button>
                 </div>
             </div>
+            
         </div>
+        <!-- Footer -->
+<footer class="page-footer font-small black">
 
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Hand Coded in Philly:
+    <a href="https://github.com/marioborras/"> Mario Borras</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
         <script> 
             function activatePlacesSearch(){
                 let input = document.getElementById('search');
@@ -46,7 +56,6 @@
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>&libraries=places&callback=activatePlacesSearch"></script>
         <script type='text/javascript' src='main.js'></script>
 
-        //disable the submit button until text is found
         <script>
             $('#submit').attr('disabled', true);
             $('input:text').keyup(function () {
