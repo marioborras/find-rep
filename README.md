@@ -1,6 +1,8 @@
 # find-rep
 a project to get familiar with JSON, APIs and Node.js
 
+See it in action at https://rep-locator.herokuapp.com/
+
 This was my final project at New York Code And Design Academy.
 I wanted to make a web app that a user could put their address and find all their elected officials from federal,state 
 local levels. Each politician has a photo, their name and how to contact them. Along with their contact info is their social
