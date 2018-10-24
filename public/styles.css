@@ -3,7 +3,7 @@
   }
 #capitol  {
     background-image: url("/images/capitol.jpg"); 
-    /* background-size: cover; */
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
 
