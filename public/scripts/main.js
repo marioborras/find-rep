@@ -1,63 +1,20 @@
+const container = document.querySelector('.container')
+const valuefromStrorage = localStorage.getItem("text")
 
 
-//countdown clock
-// Set the date we're counting down to
-const countDownDate = new Date("Nov 6, 2018 00:00:00").getTime()
-
-//update the coundown every 1 second
-const x = setInterval(function (){
-    //get todays date and time
-
-    const now = new Date().getTime()
-
-    //find the distance between now and the count down date
-    const distance = countDownDate - now
-
-    //time calculations for days, hours, minutes and seconds
-    const days = Math.floor(distance/(1000*60*60*24))
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60))
-    const minutes = Math.floor((distance % (1000*60*60))/(1000*60))
-    const seconds = Math.floor((distance % (1000*60))/ 1000)
-
-    //output the results in an element with id="time"
-    document.getElementById("time").innerHTML = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds `
-    //if the countdown is over, write some text
-    if (distance <0 ){
-        clearInterval(x)
-        document.getElementById("time").innerHTML = "Expired"
+window.onload = function(){
+    setTimeout(showPage, 3000);
+    function showPage() {
+        document.querySelector("#loader").style.display = "none";
+        document.querySelector("#root").style.display = "block";
+        container.style.display = "flex";
     }
-},1000)
-
-
-
-
-const app = document.getElementById('root')
-
-
-const container = document.createElement('div')
-container.setAttribute('class','container')
-
-app.appendChild(container)
-
-//makes the submit button redirect to the show page
-function validateSubmit(){
-    const searchInput = document.getElementById('search').value
-    
-    if( searchInput.length > 0) {
-        localStorage.setItem("text", searchInput)
-        window.location.href = "/show"
-        
-     } else {
-            alert("Enter an address")
-        }
 }
 
 
-const valuefromStrorage=localStorage.getItem("text")
-
 // Create a request variable and assign a new XMLHttpRequest object to it.
 
-let request = new XMLHttpRequest()
+const request = new XMLHttpRequest()
 
 
 
@@ -66,12 +23,12 @@ request.open('GET', `https://www.googleapis.com/civicinfo/v2/representatives?key
 
 request.onload = function () {
     //begin accessing JSON data here
-let data = JSON.parse(this.response)
+const data = JSON.parse(this.response)
 //create a div with a card class
 const card = document.createElement('div')
 card.setAttribute('class','card')
 
-//create an H1 and set the text content to the film's title
+//create an H1 and set the text content to the politicians name
 
 for (var i = 0; i <data.offices.length; i++){
     let arr = data.offices[i].officialIndices
@@ -92,8 +49,8 @@ for (var i = 0; i <data.offices.length; i++){
         //if politician image is undefined use the default image else use the image from API
         //attach it to the card
         const image = document.createElement('img')
-        if (data.officials[politician].photoUrl ==undefined) {
-            image.src = 'default_avatar.jpg'
+        if (data.officials[politician].photoUrl ===undefined) {
+            image.src = "/images/default.jpeg"
         }else {
             image.src =`${data.officials[politician].photoUrl}` 
         }
@@ -104,13 +61,13 @@ for (var i = 0; i <data.offices.length; i++){
 
         //append party next to the politician's name if it exists
         let party
-            if (data.officials[politician].party == "Republican") {
+            if (data.officials[politician].party === "Republican") {
                 party = document.createTextNode(" (R)")
                 politicianName.appendChild(party)
-            }else if (data.officials[politician].party == "Democratic"|| data.officials[politician].party == "Democrat" ) {
+            }else if (data.officials[politician].party === "Democratic"|| data.officials[politician].party === "Democrat" ) {
                     party= document.createTextNode(" (D)")
                     politicianName.appendChild(party)
-                } else if (data.officials[politician].party == "Independent") {
+                } else if (data.officials[politician].party === "Independent") {
                     party= document.createTextNode(" (I)")
                     politicianName.appendChild(party)
                 }
@@ -118,8 +75,8 @@ for (var i = 0; i <data.offices.length; i++){
         card.appendChild(politicianName)
 
 
-        const list = document.createElement("ul")
-        card.appendChild(list)
+        const contactList = document.createElement("ul")
+        card.appendChild(contactList)
         const phoneNumber = document.createElement('li')
         const homePage = document.createElement('li')
         const address = document.createElement('li')
@@ -134,7 +91,7 @@ for (var i = 0; i <data.offices.length; i++){
 
         if (data.officials[politician].phones != undefined ) {
             phoneNumber.textContent = `${data.officials[politician].phones}`
-            list.appendChild(phoneNumber)
+            contactList.appendChild(phoneNumber)
 
         }
        
@@ -143,45 +100,40 @@ for (var i = 0; i <data.offices.length; i++){
             const socialNetworks = data.officials[politician].channels
             for (let j = 0; j < socialNetworks.length; j++) {
                 let socialPlatform = socialNetworks[j].type
-                if (socialPlatform == "Facebook") {
-                    const faceBook = document.createElement('a')
-                    faceBook.setAttribute('class','icon facebook')
-                    faceBook.href =`https://www.facebook.com/${socialNetworks[j].id}`
-                    list.appendChild(faceBook)
+                if (socialPlatform === "Facebook") {
+                    const facebook = document.createElement('a')
+                    facebook.setAttribute('class','icon facebook')
+                    facebook.href =`https://www.facebook.com/${socialNetworks[j].id}`
+                    contactList.appendChild(facebook)
                 }
-                if (socialPlatform == "Twitter") {
+                if (socialPlatform === "Twitter") {
                     const twitter = document.createElement('a')
                     twitter.setAttribute('class','icon twitter')
                     twitter.href =`https://www.twitter.com/${socialNetworks[j].id}`
-                    list.appendChild(twitter)
+                    contactList.appendChild(twitter)
                 }
-                if (socialPlatform == "YouTube") {
-                    const youTube = document.createElement('a')
-                    youTube.setAttribute('class','icon youtube')
+                if (socialPlatform === "YouTube") {
+                    const youtube = document.createElement('a')
+                    youtube.setAttribute('class','icon youtube')
 
                     //youtube names may differ if the info we have is the channel info or user info from json.
                     //had to make an if statement for this.
                     if (socialNetworks[j].id.length > 20) {
-                        youTube.href = `https://www.youTube.com/channel/${socialNetworks[j].id}`
-                        list.appendChild(youTube)
+                        youtube.href = `https://www.youtube.com/channel/${socialNetworks[j].id}`
+                        contactList.appendChild(youtube)
 
                     } else {
-                    youTube.href = `https://www.youTube.com/user/${socialNetworks[j].id}`
-                    list.appendChild(youTube)
+                    youtube.href = `https://www.youtube.com/user/${socialNetworks[j].id}`
+                    contactList.appendChild(youtube)
                     }
 
                 }
                 }
             
         }
-
-     if (data.officials[politician].photoUrl ==undefined) {
-         image.src = 'default.jpeg'
-     }else {image.src =`${data.officials[politician].photoUrl}` 
-    }
-        list.appendChild(phoneNumber)
-        list.appendChild(homePage)
-        list.appendChild(address)
+        contactList.appendChild(phoneNumber)
+        contactList.appendChild(homePage)
+        contactList.appendChild(address)
         
         
     })
@@ -193,7 +145,7 @@ for (var i = 0; i <data.offices.length; i++){
 //send request
 request.send()
 //put the address that was put in the text box on the page
-document.getElementById("addressInput").textContent= valuefromStrorage
+document.querySelector("#addressInput").textContent= valuefromStrorage
 
 
 

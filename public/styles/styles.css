@@ -8,6 +8,11 @@
     background-attachment: fixed;
 
 }
+.home-container {
+ text-align: center;
+ max-width: 40%;
+ margin: 0 auto
+}
 
   a:link, a:visited {
     text-decoration: none;
@@ -24,6 +29,7 @@
   }
   
   #root {
+    display: none;
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -54,7 +60,7 @@
   }
   
   .container {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     padding-bottom: 170px;
   }
