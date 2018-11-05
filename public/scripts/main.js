@@ -16,8 +16,6 @@ window.onload = function(){
 
 const request = new XMLHttpRequest()
 
-
-
 // Open a new connection, using the GET request on the URL endpoint
 request.open('GET', `https://www.googleapis.com/civicinfo/v2/representatives?key=${apiKey}&address=${valuefromStrorage}` , true)
 
@@ -25,8 +23,7 @@ request.onload = function () {
     //begin accessing JSON data here
 const data = JSON.parse(this.response)
 //create a div with a card class
-const card = document.createElement('div')
-card.setAttribute('class','card')
+
 
 //create an H1 and set the text content to the politicians name
 
@@ -138,7 +135,7 @@ for (var i = 0; i <data.offices.length; i++){
         
     })
         
-}
+ }
 }
 
 
