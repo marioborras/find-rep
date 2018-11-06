@@ -2,13 +2,14 @@ const container = document.querySelector('.container')
 const valuefromStrorage = localStorage.getItem("text")
 
 
-window.onload = function(){
-    setTimeout(showPage, 3000);
-    function showPage() {
+window.onload = () =>{
+    const showPage = () => {
         document.querySelector("#loader").style.display = "none";
         document.querySelector("#root").style.display = "block";
         container.style.display = "flex";
     }
+    setTimeout(showPage, 3000);
+   
 }
 
 
@@ -19,7 +20,7 @@ const request = new XMLHttpRequest()
 // Open a new connection, using the GET request on the URL endpoint
 request.open('GET', `https://www.googleapis.com/civicinfo/v2/representatives?key=${apiKey}&address=${valuefromStrorage}` , true)
 
-request.onload = function () {
+request.onload = function (){
     //begin accessing JSON data here
 const data = JSON.parse(this.response)
 //create a div with a card class

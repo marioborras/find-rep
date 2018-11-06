@@ -1,9 +1,10 @@
-window.onload = function(){
-    setTimeout(showPage, 500);
-    function showPage() {
+window.onload = ()=> {
+    const showPage = () => {
         document.querySelector("#myDiv").style.display = "block";
-
     }
+    setTimeout(showPage, 500);
+    
+}
 
 
 //countdown clock
@@ -11,7 +12,7 @@ window.onload = function(){
 const countDownDate = new Date("Nov 6, 2018 00:00:00").getTime()
 
 //update the coundown every 1 second
-const x = setInterval(function (){
+const x = setInterval(() =>{
     //get todays date and time
 
     const now = new Date().getTime()
@@ -35,7 +36,7 @@ const x = setInterval(function (){
 },1000)
 
 //event listener triggered when submit button clicked
-document.querySelector('#submit-button').addEventListener("click",function(){
+document.querySelector('#submit-button').addEventListener("click",() =>{
     const searchInput = document.querySelector('#search').value
     
     if( searchInput.length > 0) {
@@ -46,8 +47,8 @@ document.querySelector('#submit-button').addEventListener("click",function(){
             alert("Enter an address")
         }
 })
-}
-function activatePlacesSearch(){
+
+const activatePlacesSearch = () => {
     let input = document.querySelector('#search');
     let autocomplete = new google.maps.places.Autocomplete(input);
     // Set  restriction on country for the autocomplete 
@@ -57,9 +58,9 @@ function activatePlacesSearch(){
 
 //jquery to disable button if no text
 $('#submit').attr('disabled', true)
-$('input:text').keyup(function () {
+$('input:text').keyup(() => {
     let disable = false
-    $('input:text').each(function(){
+    $('input:text').each(() => {
         if($(this).val()==""){
             disable = true              
         }
