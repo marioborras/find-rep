@@ -48,7 +48,7 @@ document.querySelector('#submit-button').addEventListener("click",() =>{
         }
 })
 
-const activatePlacesSearch = () => {
+activatePlacesSearch = function() {
     let input = document.querySelector('#search');
     let autocomplete = new google.maps.places.Autocomplete(input);
     // Set  restriction on country for the autocomplete 
@@ -58,9 +58,9 @@ const activatePlacesSearch = () => {
 
 //jquery to disable button if no text
 $('#submit').attr('disabled', true)
-$('input:text').keyup(() => {
+$('input:text').keyup(function (){
     let disable = false
-    $('input:text').each(() => {
+    $('input:text').each(function() {
         if($(this).val()==""){
             disable = true              
         }

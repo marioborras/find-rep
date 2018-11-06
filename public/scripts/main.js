@@ -47,11 +47,8 @@ for (var i = 0; i <data.offices.length; i++){
         //if politician image is undefined use the default image else use the image from API
         //attach it to the card
         const image = document.createElement('img')
-        if (data.officials[politician].photoUrl ===undefined) {
-            image.src = "/images/default.jpeg"
-        }else {
-            image.src =`${data.officials[politician].photoUrl}` 
-        }
+        data.officials[politician].photoUrl === undefined ? image.src = "/images/default.jpeg" : image.src =`${data.officials[politician].photoUrl}` 
+        
         card.appendChild(image)
         //create an element tag and append to card
         const politicianName = document.createElement('h2')
@@ -104,13 +101,13 @@ for (var i = 0; i <data.offices.length; i++){
                     facebook.href =`https://www.facebook.com/${socialNetworks[j].id}`
                     contactList.appendChild(facebook)
                 }
-                if (socialPlatform === "Twitter") {
+                else if (socialPlatform === "Twitter") {
                     const twitter = document.createElement('a')
                     twitter.setAttribute('class','icon twitter')
                     twitter.href =`https://www.twitter.com/${socialNetworks[j].id}`
                     contactList.appendChild(twitter)
                 }
-                if (socialPlatform === "YouTube") {
+                else if (socialPlatform === "YouTube") {
                     const youtube = document.createElement('a')
                     youtube.setAttribute('class','icon youtube')
 
