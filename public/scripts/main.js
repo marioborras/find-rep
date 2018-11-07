@@ -1,3 +1,5 @@
+"use strict"
+
 const container = document.querySelector('.container')
 const valuefromStrorage = localStorage.getItem("text")
 
@@ -30,8 +32,11 @@ const data = JSON.parse(this.response)
 
 for (var i = 0; i <data.offices.length; i++){
     let arr = data.offices[i].officialIndices
+    
+
  
     arr.forEach(politician => {
+        const person = data.officials[politician]
         //make the card
         const card = document.createElement('div')
         //set an atribute and class for each card
@@ -42,27 +47,26 @@ for (var i = 0; i <data.offices.length; i++){
         //create h1 element and append to card
         const h1 = document.createElement('h1')
         card.appendChild(h1)
-
         //create img tag
         //if politician image is undefined use the default image else use the image from API
         //attach it to the card
         const image = document.createElement('img')
-        data.officials[politician].photoUrl === undefined ? image.src = "/images/default.jpeg" : image.src =`${data.officials[politician].photoUrl}` 
+        person.photoUrl ? image.src =`${person.photoUrl}` : image.src =  "/images/default.jpeg" 
         
         card.appendChild(image)
         //create an element tag and append to card
         const politicianName = document.createElement('h2')
-        politicianName.textContent = `${data.officials[politician].name}`
+        politicianName.textContent = `${person.name}`
 
         //append party next to the politician's name if it exists
         let party
-            if (data.officials[politician].party === "Republican") {
+            if (person.party === "Republican") {
                 party = document.createTextNode(" (R)")
                 politicianName.appendChild(party)
-            }else if (data.officials[politician].party === "Democratic"|| data.officials[politician].party === "Democrat" ) {
+            }else if (person.party === "Democratic"|| person.party === "Democrat" ) {
                     party= document.createTextNode(" (D)")
                     politicianName.appendChild(party)
-                } else if (data.officials[politician].party === "Independent") {
+                } else if (person.party === "Independent") {
                     party= document.createTextNode(" (I)")
                     politicianName.appendChild(party)
                 }
@@ -76,23 +80,23 @@ for (var i = 0; i <data.offices.length; i++){
         const homePage = document.createElement('li')
         const address = document.createElement('li')
         h1.textContent = data.offices[i].name
-        homePage.innerHTML=`<a href="${data.officials[politician].urls}">Website</a>`
+        homePage.innerHTML=`<a href="${person.urls}">Website</a>`
         //addresses of politicians
-        if (data.officials[politician].address != undefined) {
-        const fullAddress = data.officials[politician].address[0]
+        if (person.address) {
+        const fullAddress = person.address[0]
         address.textContent= Object.values(fullAddress).join(' ')
         }
     
 
-        if (data.officials[politician].phones != undefined ) {
-            phoneNumber.textContent = `${data.officials[politician].phones}`
+        if (person.phones) {
+            phoneNumber.textContent = `${person.phones}`
             contactList.appendChild(phoneNumber)
 
         }
        
         //social network channels
-        if (data.officials[politician].channels != undefined) {
-            const socialNetworks = data.officials[politician].channels
+        if (person.channels) {
+            const socialNetworks = person.channels
             for (let j = 0; j < socialNetworks.length; j++) {
                 let socialPlatform = socialNetworks[j].type
                 if (socialPlatform === "Facebook") {
