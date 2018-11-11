@@ -13,4 +13,6 @@ Maps API to assist with this.
 
 I had to find ways to deal with anomalies such as a vacant office or all the different social channels that existed.
 In order to store the data I used HTML local storage.
+
+During election season, the app also tells you the polling location of a residential address.
  
