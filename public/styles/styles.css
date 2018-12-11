@@ -14,7 +14,7 @@
  margin: 0 auto
 }
 .div-text {
-  max-width: 90%;
+  font-size: 1.4rem;
 }
   a:link, a:visited {
     text-decoration: none;
@@ -60,7 +60,9 @@
     padding: 0 2.5rem 2.5rem;
     margin: 0;
   }
-  
+.submission-form {
+ width: 100%;
+}
   .container {
     display: none;
     flex-wrap: wrap;
@@ -91,6 +93,7 @@
 
   }
 
+/* politicians */
   .card h2 {
     text-align: center;
   }

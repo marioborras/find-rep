@@ -35,10 +35,9 @@ const x = setInterval(() =>{
     }
 },1000)
 
-//event listener triggered when submit button clicked
-document.querySelector('#submit-button').addEventListener("click",() =>{
-    const searchInput = document.querySelector('#search').value
-    
+document.querySelector("#form").addEventListener("submit", (e)=> {
+    e.preventDefault()
+    const searchInput = e.target.address.value
     if( searchInput.length > 0) {
         localStorage.setItem("text", searchInput)
         location.assign("/show")
@@ -47,6 +46,19 @@ document.querySelector('#submit-button').addEventListener("click",() =>{
             alert("Enter an address")
         }
 })
+
+//event listener triggered when submit button clicked
+// document.querySelector('#submit-button').addEventListener("click",() =>{
+//     const searchInput = document.querySelector('#search').value
+    
+//     if( searchInput.length > 0) {
+//         localStorage.setItem("text", searchInput)
+//         location.assign("/show")
+        
+//      } else {
+//             alert("Enter an address")
+//         }
+// })
 
 activatePlacesSearch = function() {
     let input = document.querySelector('#search');
