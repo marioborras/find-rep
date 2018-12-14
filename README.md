@@ -1,6 +1,9 @@
 # find-rep
 a project to get familiar with JSON, APIs and Node.js
 
+![Screenshot](https://marioborras.me/images/rep-locator.png)
+
+
 See it in action at https://rep-locator.herokuapp.com/
 
 This was my final project at New York Code And Design Academy.
